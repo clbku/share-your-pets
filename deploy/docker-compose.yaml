@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: admin
+
+  web:
+    build: 
+      context: ..
+      dockerfile: ./deploy/Dockerfile
+      args:
+        VITE_MAPBOX_TOKEN: pk.eyJ1IjoiY29uZ2x5MTMxMSIsImEiOiJjbWc4Mnc2cGEwMzQ0MmxxMDJlb2xjYWV1In0.IxN96EFc9YPzdN8Wd0mNFg
+    restart: always
+    ports:
+      - 3123:80
+  
